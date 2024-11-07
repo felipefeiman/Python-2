@@ -35,6 +35,7 @@ def menu():
         articulosElectricos.append(producto)
         producto.verInformacion()
         producto.verTension()
+        producto.debeComprar()
     else: 
         print("Ingrese una opcion valida: ")
         menu()
