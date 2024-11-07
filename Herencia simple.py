@@ -3,12 +3,12 @@ herramientas=[]
 maquinas=[]
 articulosElectricos=[]
 
-print("Bienvenido al sistema de la Ferretería La Tuerca")
 def menu():
-    producto= input ("Ingrese el producto que quiere ingresar: ")
+    print("Bienvenido al sistema de la Ferretería La Tuerca")
+    producto= input ("Que producto quiere ingresar: ")
     codigo= input ("Ingrese el codigo: ")
     nombre= input ("Ingrese el nombre: ")
-    precio= input ("Ingrese el precio: ")
+    precio= int (input ("Ingrese el precio: "))
 
     op= input ("En que categoria quiere agregar el producto: a. Articulos b. Herramientas c. Maquinas d. Articulos Electricos: ")
     if op=="a":
@@ -17,18 +17,21 @@ def menu():
         articulos.append(producto)
         producto.verInformacion()
         producto.debeComprar()
+        menu()
     elif op=="b":
         rubro= input ("Ingrese el rubro: ")
         producto=Herramientas(codigo,nombre,precio,rubro)
         herramientas.append(producto)
         producto.verInformacion()
         producto.verRubro()
+        menu()
     elif op=="c":
         potencia= int (input ("Ingrese la potencia: "))
         producto=Maquinas(codigo,nombre,precio,potencia)
         maquinas.append(producto)
         producto.verInformacion()
         producto.verPotencia()
+        menu()
     elif op=="d":
         tension= input (input ("Ingrese la tenison: "))
         producto=ArticulosElectricos(codigo,nombre,precio,tension)
@@ -41,7 +44,7 @@ def menu():
         menu()
 
 class Productos():
-    def __init__(self,codigo,nombre,precio):
+    def _init_(self,codigo,nombre,precio):
         self.codigo=codigo
         self.nombre=nombre
         self.precio=precio
@@ -50,8 +53,8 @@ class Productos():
         print(self.codigo,self.nombre,self.precio)
 
 class Articulos(Productos):
-    def __init__(self,codigo,nombre,precio,stock):
-        Productos.__init__(self,codigo,nombre,precio)
+    def _init_(self,codigo,nombre,precio,stock):
+        Productos._init_(self,codigo,nombre,precio)
         self.stock=stock
 
     def debeComprar(self):
@@ -59,16 +62,16 @@ class Articulos(Productos):
             print("Debe comprar")
 
 class Herramientas(Productos):
-    def __init__(self,codigo,nombre,precio,rubro):
-        Productos.__init__(self,codigo,nombre,precio)
+    def _init_(self,codigo,nombre,precio,rubro):
+        Productos._init_(self,codigo,nombre,precio)
         self.rubro=rubro
 
     def verRubro(self):
         print(self.rubro)
 
 class Maquinas(Productos):
-    def __init__(self,codigo,nombre,precio,potencia):
-        Productos.__init__(self,codigo,nombre,precio)
+    def _init_(self,codigo,nombre,precio,potencia):
+        Productos._init_(self,codigo,nombre,precio)
         self.potencia=potencia
 
     def verPotencia(self):
@@ -76,12 +79,12 @@ class Maquinas(Productos):
             print("Es de consumo alto")
     
 class ArticulosElectricos(Articulos):
-    def __init__(self,codigo,nombre,precio,stock,tension):
-        Productos.__init__(self,codigo,nombre,precio,stock)
+    def _init_(self,codigo,nombre,precio,stock,tension):
+        Productos._init_(self,codigo,nombre,precio,stock)
         self.tension=tension
 
     def verTension(self):
         if self.tension<48:
             print("Es de tension alta")
 
-menu()
+menu(
