@@ -1,7 +1,3 @@
-"""
-7. Si selecciona la opción ver datos, el sistema le pedirá el dni del usuario que desea ver. Al ingresarlo le imprimirá todos los datos (nombre, edad, dni y contraseña). En caso que ingrese un dni que no se encuentra en el sistema, informárselo.
-"""
-
 nombres=[]
 
 class Usuarios():
@@ -11,31 +7,28 @@ class Usuarios():
         self.edad=edad
         self.__cont2=__cont2
 
-    def contraseña():
+    def contraseña(self):
         global __cont2
 
         __cont1= input("Ingrese una contraseña: ")
         __cont2= input("Confirme la contraseña: ")
-        if __cont1==__cont2:
-            print("Contraseña almacenada correctamente")
-        else: 
-            while __cont1!=__cont2:
+        
+        while __cont1!=__cont2:
                 print("Contraseñas distintas") 
+                self.contraseña()
+        print("Contraseña almacenada correctamente")
 
-    def verr():
+    def verr(self):
         ver= input ("Ingrese el dni del usuario que desea ver: ")
         for i in nombres: 
-            if i.nombre== ver:
+            if i.nombres== ver:
                 print(nombre,dni,edad,__cont2)
         else: 
             print("Ingrese un dni que este en el sistema")
             
-        
-   
-
 def menu():
     print("Bienvenido a la ANSES")
-    op= input ("Que quiere hacer: a. Registrarse b. Ver usuarios c. Ver datos d. Borrar usuario e. Salir del sistema")
+    op= input ("Que quiere hacer: a. Registrarse b. Ver usuarios c. Ver datos d. Borrar usuario e. Salir del sistema: ")
     if op=="a":
         registrarse()
         usuario.contraseña()
@@ -44,7 +37,7 @@ def menu():
         print(nombres)
         menu()
     elif op=="c": 
-
+        usuario.verr()
         menu()
     elif op=="d":
         borrarr()
@@ -55,7 +48,6 @@ def menu():
     else: 
         print("Ingrese una opcion correcta")
         menu()
-
 
 def registrarse():
         global usuario,dni,edad,nombre
@@ -79,5 +71,4 @@ def borrarr():
         print("Ingrese un nombre que este en el sistema")
         borrarr()
 
-
-        
+menu()
